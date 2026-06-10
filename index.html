@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulador de Créditos Previdenciários — Lessa Biazini</title>
+<meta name="description" content="Estime em 2 minutos o potencial de créditos previdenciários recuperáveis da sua empresa ou do seu cliente. Estimativa preliminar gratuita.">
+<link rel="icon" href="/logo.jpg" type="image/jpeg">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .hero{padding:clamp(2rem,6vw,4.5rem) clamp(1rem,4vw,3rem) 1rem;max-width:1280px;margin:0 auto}
+  .hero p.eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--azul-escuro);margin-bottom:.8rem}
+  .hero h1{font-size:clamp(1.7rem,4.5vw,3rem);max-width:18ch}
+  .hero p.sub{max-width:58ch;color:var(--tinta-suave);margin-top:1rem}
+  .sim{display:grid;gap:1.5rem;grid-template-columns:1fr;max-width:1280px;margin:2rem auto 0;padding:0 clamp(1rem,4vw,3rem)}
+  @media(min-width:960px){.sim{grid-template-columns:minmax(320px,440px) 1fr;align-items:start}}
+  .formulario{background:#fff;border:1px solid var(--linha);border-radius:var(--raio);padding:1.4rem;box-shadow:var(--sombra)}
+  .formulario h2{font-size:1.05rem;margin-bottom:.2rem}
+  .formulario p{font-size:.82rem;color:var(--tinta-suave)}
+  .aviso{font-size:.74rem;color:var(--tinta-suave);margin-top:1rem;border-top:1px dashed var(--linha);padding-top:.8rem}
+  .captura{display:none;margin-top:1.4rem;border-top:2px solid var(--azul);padding-top:1rem}
+  .captura.visivel{display:block}
+  .ok{display:none;background:#e8f3ec;border:1px solid var(--verde);color:var(--verde);border-radius:var(--raio);padding:.9rem 1rem;margin-top:1rem;font-size:.9rem}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <a class="marca" href="/">
+    <img class="selo" src="/logo.jpg" alt="Lessa Biazini">
+    <span class="nome">Lessa Biazini<small>Gestão Empresarial</small></span>
+  </a>
+  <nav>
+    <a class="ativo" href="/">Simulador</a>
+    <a href="/painel">Painel interno</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <p class="eyebrow">Diagnóstico preliminar · gratuito · 2 minutos</p>
+  <h1>Quanto sua folha já pagou <em>a mais</em> ao INSS?</h1>
+  <p class="sub">Verbas de natureza indenizatória não compõem a base do INSS patronal — mas seguem sendo tributadas na maioria das folhas. Preencha quatro campos e veja a memória de cálculo preliminar dos últimos 60 meses, linha a linha.</p>
+</section>
+
+<main class="sim">
+  <form class="formulario" id="form-sim" novalidate>
+    <h2>Dados da folha</h2>
+    <p>Nenhum documento é necessário nesta etapa.</p>
+
+    <label for="folha">Folha de pagamento mensal (R$)</label>
+    <input id="folha" name="folhaMensal" type="number" min="0" step="1000" placeholder="ex.: 850000" required>
+
+    <label for="func">Nº de empregados CLT</label>
+    <input id="func" name="funcionarios" type="number" min="1" step="1" placeholder="ex.: 240">
+
+    <label for="rat">Alíquota RAT do CNAE</label>
+    <select id="rat" name="ratAliquota">
+      <option value="1">1% — risco leve</option>
+      <option value="2" selected>2% — risco médio</option>
+      <option value="3">3% — risco grave</option>
+    </select>
+
+    <label for="fap">FAP (se souber)</label>
+    <input id="fap" name="fap" type="number" min="0.5" max="2" step="0.01" placeholder="1.00">
+
+    <label>Verbas presentes na folha</label>
+    <div class="opcoes" id="verbas"></div>
+
+    <p style="margin-top:1.2rem"><button class="btn btn-ouro" type="submit" style="width:100%">Calcular potencial</button></p>
+
+    <div class="captura" id="captura">
+      <h2>Receber a memória de cálculo</h2>
+      <p>Enviamos o detalhamento e os próximos passos. Sem compromisso.</p>
+      <label for="nome">Nome</label>
+      <input id="nome" name="nome" autocomplete="name">
+      <label for="empresa">Empresa ou escritório</label>
+      <input id="empresa" name="empresa" autocomplete="organization">
+      <label for="tipo">Você é</label>
+      <select id="tipo" name="tipo">
+        <option value="empresa">Empresa (caso próprio)</option>
+        <option value="escritorio">Escritório de advocacia (parceria white label)</option>
+      </select>
+      <label for="email">E-mail</label>
+      <input id="email" name="email" type="email" autocomplete="email">
+      <label for="whatsapp">WhatsApp</label>
+      <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="(43) 9 9999-9999">
+      <p style="margin-top:1rem"><button class="btn btn-tinta" type="button" id="btn-lead" style="width:100%">Quero a análise completa</button></p>
+      <div class="ok" id="ok">Recebido. A equipe entra em contato pelo WhatsApp informado — leads com maior potencial são priorizados em até 4 horas úteis.</div>
+    </div>
+
+    <p class="aviso">Estimativa preliminar e não vinculante, baseada em parâmetros médios de mercado. A apuração definitiva exige análise de eSocial, EFD-Reinf, DCTFWeb e folha analítica, conforme IN RFB nº 2.121/2022 e demais normativos vigentes.</p>
+  </form>
+
+  <aside class="ledger" id="resultado" aria-live="polite">
+    <header>
+      <h3>Memória de cálculo preliminar</h3>
+      <span>Janela de 60 meses</span>
+    </header>
+    <table>
+      <thead>
+        <tr><th>Verba excluída da base</th><th class="num">Base mensal</th><th class="num">Crédito 60m</th></tr>
+      </thead>
+      <tbody id="linhas">
+        <tr><td colspan="3" style="color:var(--tinta-suave);padding:1.6rem 1.25rem">Preencha os dados ao lado para gerar a apuração linha a linha.</td></tr>
+      </tbody>
+      <tfoot id="totais" hidden>
+        <tr><td>Crédito principal estimado</td><td></td><td class="num" id="t-principal"></td></tr>
+        <tr><td>Atualização (Selic, média da janela)</td><td></td><td class="num" id="t-selic"></td></tr>
+        <tr class="total"><td>Total estimado a recuperar</td><td></td><td class="num verde" id="t-total"></td></tr>
+        <tr><td colspan="2" style="font-size:.78rem;color:var(--tinta-suave)">Faixa de confiança</td><td class="num" style="font-size:.85rem" id="t-faixa"></td></tr>
+      </tfoot>
+    </table>
+  </aside>
+</main>
+
+<footer class="rodape">
+  <span>© 2026 Lessa Biazini Gestão Empresarial · Londrina, PR · Atuação nacional · Estrutura 100% digital</span>
+  <span>Execução técnica fiscal e previdenciária · Modelo white label B2B</span>
+</footer>
+
+<script src="/sim.js"></script>
+</body>
+</html>

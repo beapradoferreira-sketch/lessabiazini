@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proposta — Lessa Biazini OS</title>
+<meta name="description" content="Sistema de captação qualificada e gestão de execução para a Lessa Biazini Gestão Empresarial.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,700;0,800;1,600&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --marinho:#00183a;--tinta:#0c1626;--tinta-suave:#42506a;--papel:#f7f9fc;--papel-escuro:#e9eef6;
+  --ouro:#004db3;--ouro-escuro:#003c8c;--ouro-claro:#9ec2f5;--verde:#1f6b4a;
+  --vermelho:#9c3a2e;--linha:#d4dce8;
+  --serif:'Montserrat',system-ui,sans-serif;--sans:'Archivo',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--papel);color:var(--tinta);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.12}
+em{font-style:italic;color:var(--ouro-escuro)}
+section{padding:clamp(2.5rem,7vw,5rem) clamp(1.2rem,6vw,4rem);max-width:1100px;margin:0 auto}
+.eyebrow{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ouro-escuro);margin-bottom:1rem}
+.num-grande{font-family:var(--serif);font-variant-numeric:tabular-nums}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* capa */
+.capa{background:var(--marinho);color:var(--papel);min-height:78vh;display:flex;align-items:center}
+.capa .miolo{max-width:1100px;margin:0 auto;padding:clamp(2.5rem,7vw,5rem) clamp(1.2rem,6vw,4rem)}
+.capa h1{font-size:clamp(2rem,5.5vw,3.8rem);max-width:17ch}
+.capa h1 em{color:var(--ouro-claro)}
+.capa p.sub{max-width:56ch;margin-top:1.4rem;color:#b9c7e0;font-size:1.05rem}
+.selo-capa{display:flex;align-items:center;gap:.8rem;margin-bottom:2.5rem}
+.selo-capa svg{width:48px;height:48px}
+.selo-capa span{font-family:var(--serif);letter-spacing:.02em}
+.selo-capa small{display:block;font-family:var(--sans);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:#8da3c6}
+
+/* problema: ledger de perdas */
+.ledger{background:#fff;border:1px solid var(--linha);border-radius:6px;box-shadow:0 2px 10px rgba(21,24,29,.08);overflow:hidden;margin-top:1.5rem}
+.ledger table{width:100%;border-collapse:collapse;font-size:.93rem}
+.ledger th,.ledger td{padding:.85rem 1.2rem;border-bottom:1px solid var(--papel-escuro);text-align:left;vertical-align:top}
+.ledger th{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-suave);font-weight:500;border-bottom:2px solid var(--tinta)}
+.perda{color:var(--vermelho);font-weight:600;white-space:nowrap}
+.ganho{color:var(--verde);font-weight:600;white-space:nowrap}
+
+/* módulos */
+.modulos{display:grid;gap:1rem;grid-template-columns:1fr;margin-top:1.6rem}
+@media(min-width:760px){.modulos{grid-template-columns:repeat(2,1fr)}}
+.modulo{background:#fff;border:1px solid var(--linha);border-top:3px solid var(--ouro);border-radius:6px;padding:1.3rem 1.4rem}
+.modulo h3{font-size:1.05rem;margin-bottom:.5rem}
+.modulo p{font-size:.9rem;color:var(--tinta-suave)}
+.modulo .rota{display:inline-block;font-size:.7rem;background:var(--papel-escuro);border-radius:4px;padding:.15rem .5rem;margin-top:.7rem;font-family:ui-monospace,monospace;color:var(--tinta-suave)}
+
+/* fluxo */
+.fluxo{display:grid;gap:.6rem;grid-template-columns:1fr;counter-reset:passo;margin-top:1.6rem}
+@media(min-width:860px){.fluxo{grid-template-columns:repeat(4,1fr)}}
+.passo{background:#fff;border:1px solid var(--linha);border-radius:6px;padding:1.1rem 1.2rem;position:relative}
+.passo::before{counter-increment:passo;content:counter(passo,decimal-leading-zero);font-family:var(--serif);font-style:italic;color:var(--ouro);font-size:1.3rem;display:block;margin-bottom:.4rem}
+.passo b{font-family:var(--serif)}
+.passo p{font-size:.84rem;color:var(--tinta-suave);margin-top:.3rem}
+
+/* matemática */
+.conta{background:var(--marinho);color:var(--papel);border-radius:6px;padding:clamp(1.5rem,4vw,2.5rem);margin-top:1.6rem}
+.conta table{width:100%;border-collapse:collapse;font-size:.95rem}
+.conta td{padding:.65rem 0;border-bottom:1px solid #1b3458}
+.conta td:last-child{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.conta .total td{border-bottom:none;border-top:2px solid var(--ouro);font-family:var(--serif);font-size:1.25rem;color:var(--ouro-claro);padding-top:1rem}
+.conta small{display:block;margin-top:1.2rem;color:#8da3c6;font-size:.78rem}
+
+/* cta */
+.cta{background:var(--papel-escuro);text-align:center;max-width:none}
+.cta .miolo{max-width:760px;margin:0 auto}
+.cta h2{font-size:clamp(1.6rem,4vw,2.4rem)}
+.btn{display:inline-block;margin-top:1.6rem;background:var(--ouro);color:#fff;text-decoration:none;font-weight:600;padding:.9rem 2rem;border-radius:6px}
+.btn:hover{background:var(--ouro-escuro)}
+.rodape{padding:1.5rem;text-align:center;font-size:.75rem;color:var(--tinta-suave);border-top:1px solid var(--linha)}
+h2.titulo{font-size:clamp(1.5rem,3.6vw,2.2rem);max-width:24ch}
+p.lead{max-width:62ch;color:var(--tinta-suave);margin-top:.8rem}
+</style>
+</head>
+<body>
+
+<div class="capa">
+  <div class="miolo">
+    <div class="selo-capa">
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="2" y="2" width="60" height="60" rx="6" fill="#004db3"/>
+        <text x="32" y="41" text-anchor="middle" font-family="Montserrat,system-ui,sans-serif" font-weight="800" font-size="22" fill="#ffffff">LB</text>
+        
+      </svg>
+      <span>Lessa Biazini<small>Proposta de sistema · Lessa Biazini OS</small></span>
+    </div>
+    <p class="eyebrow">Captação qualificada · Pipeline auditável · Propostas em 1 clique</p>
+    <h1>Vocês executam com precisão. <em>O funil de vocês, ainda não.</em></h1>
+    <p class="sub">A Lessa Biazini promete metodologia, compliance e rastreabilidade total — e entrega. Mas hoje todo lead chega frio por um link de WhatsApp, toda triagem é manual e toda proposta é montada à mão. O Lessa Biazini OS aplica à captação e à gestão a mesma disciplina que vocês aplicam à apuração.</p>
+  </div>
+</div>
+
+<section>
+  <p class="eyebrow">O diagnóstico</p>
+  <h2 class="titulo">O que o modelo atual <em>deixa na mesa</em></h2>
+  <p class="lead">Analisamos o posicionamento público da empresa — site, Linktree e Instagram. A execução técnica é o ponto forte; a esteira comercial e operacional que a alimenta tem quatro vazamentos mensuráveis.</p>
+  <div class="ledger">
+    <table>
+      <tr><th>Lançamento</th><th>Como é hoje</th><th>Custo</th></tr>
+      <tr>
+        <td><b>Lead frio</b></td>
+        <td>O único CTA do site e do Instagram é "Falar com a equipe" no WhatsApp. O interessado chega sem dado nenhum — porte, folha, verbas, urgência.</td>
+        <td class="perda">– horas de triagem por lead</td>
+      </tr>
+      <tr>
+        <td><b>Triagem igualitária</b></td>
+        <td>Um caso de R$ 80 mil e um de R$ 2 milhões disputam a mesma atenção, na ordem em que chegam.</td>
+        <td class="perda">– foco nos maiores tíquetes</td>
+      </tr>
+      <tr>
+        <td><b>Prescrição silenciosa</b></td>
+        <td>A janela de 60 meses corre todo mês. Cada competência que prescreve durante a espera é crédito que deixa de existir — e honorário de êxito que deixa de ser cobrado.</td>
+        <td class="perda">– crédito irrecuperável / mês</td>
+      </tr>
+      <tr>
+        <td><b>Proposta artesanal</b></td>
+        <td>Cada proposta white label é formatada manualmente com a identidade do escritório parceiro.</td>
+        <td class="perda">– horas por proposta emitida</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">A solução</p>
+  <h2 class="titulo">Lessa Biazini OS: <em>quatro módulos</em>, um sistema</h2>
+  <p class="lead">Entregue funcionando: backend completo em Node.js (zero dependências), frontend responsivo com a identidade da marca, dados persistentes e trilha de auditoria — coerente com o que vocês já vendem.</p>
+  <div class="modulos">
+    <div class="modulo">
+      <h3>Simulador público de créditos</h3>
+      <p>O visitante do Instagram informa folha, RAT e verbas — e vê a memória de cálculo preliminar dos 60 meses, linha a linha, antes de falar com a equipe. O lead chega <b>quente e dimensionado</b>. É o lead magnet que falta no Linktree.</p>
+      <span class="rota">POST /api/simulacao</span>
+    </div>
+    <div class="modulo">
+      <h3>Score automático de leads</h3>
+      <p>Cada lead recebe nota 0–100 por tíquete estimado, porte e perfil (escritório parceiro vale mais que caso único). Faixa A = contato em 4 horas. A equipe ataca primeiro o que paga mais.</p>
+      <span class="rota">POST /api/leads · score 0–100</span>
+    </div>
+    <div class="modulo">
+      <h3>Pipeline com trilha de auditoria</h3>
+      <p>Kanban das 6 etapas — levantamento, apuração, retificação, habilitação, compensação, concluído. Cada avanço registra quem, quando e por quê. <b>Alertas automáticos de prescrição</b> mostram as competências que vencem nos próximos 6 meses.</p>
+      <span class="rota">GET /api/alertas · trilha por caso</span>
+    </div>
+    <div class="modulo">
+      <h3>Propostas white label em 1 clique</h3>
+      <p>Nome do escritório, cliente, crédito estimado e honorário de êxito — e a proposta sai formatada na identidade do parceiro, pronta para PDF. De horas para segundos.</p>
+      <span class="rota">POST /api/propostas</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">O fluxo</p>
+  <h2 class="titulo">Do post no Instagram ao <em>crédito compensado</em></h2>
+  <div class="fluxo">
+    <div class="passo"><b>Simula</b><p>Link no Linktree e na bio leva ao simulador. Estimativa em 2 minutos, sem documento.</p></div>
+    <div class="passo"><b>Qualifica</b><p>Lead capturado com score e SLA. Faixa A aparece no painel para contato em 4 h.</p></div>
+    <div class="passo"><b>Propõe</b><p>Proposta white label gerada com os números da simulação e a marca do parceiro.</p></div>
+    <div class="passo"><b>Executa</b><p>Caso entra no kanban com trilha de auditoria e alerta de prescrição até a compensação.</p></div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">A matemática</p>
+  <h2 class="titulo">Cenário conservador, <em>primeiro ano</em></h2>
+  <div class="conta">
+    <table>
+      <tr><td>Leads qualificados/mês vindos do simulador (tráfego atual do Instagram + Linktree)</td><td class="num-grande">8</td></tr>
+      <tr><td>Conversão em casos (faixas A e B)</td><td class="num-grande">2 / mês</td></tr>
+      <tr><td>Crédito médio por caso (referência: simulação de folha de R$ 850 mil)</td><td class="num-grande">R$ 550 mil</td></tr>
+      <tr><td>Honorário de êxito médio</td><td class="num-grande">20%</td></tr>
+      <tr><td>Horas de triagem e proposta economizadas</td><td class="num-grande">~25 h / mês</td></tr>
+      <tr class="total"><td>Receita anual adicional potencial</td><td>≈ R$ 2,6 milhões</td></tr>
+    </table>
+    <small>Cenário ilustrativo: 2 casos/mês × R$ 550 mil × 20% × 12 meses. Os parâmetros — taxa de conversão, tíquete médio e honorário — são da própria Lessa Biazini e devem ser calibrados com os dados reais da operação. Não é projeção garantida.</small>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="miolo">
+    <p class="eyebrow">Próximo passo</p>
+    <h2>O sistema já está pronto. <em>Basta rodar.</em></h2>
+    <p class="lead" style="margin:1rem auto 0">Um comando — <code>node server.js</code> — sobe o simulador público e o painel interno. Sem licença, sem dependências, com código aberto para a equipe calibrar os parâmetros de apuração antes do lançamento.</p>
+    <a class="btn" href="https://api.whatsapp.com/send/?phone=5543991962801" target="_blank" rel="noopener">Agendar demonstração de 20 minutos</a>
+  </div>
+</section>
+
+<div class="rodape">
+  Proposta de sistema para Lessa Biazini Gestão Empresarial · Londrina, PR · As estimativas do simulador são preliminares e não vinculantes; parâmetros fiscais devem ser validados pela equipe técnica.
+</div>
+
+</body>
+</html>

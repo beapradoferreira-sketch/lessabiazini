@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel interno — Lessa Biazini OS</title>
+<link rel="icon" href="/logo.jpg" type="image/jpeg">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header class="topo">
+  <a class="marca" href="/">
+    <img class="selo" src="/logo.jpg" alt="Lessa Biazini">
+    <span class="nome">Lessa Biazini<small>Painel de operações</small></span>
+  </a>
+  <nav>
+    <a href="/">Simulador</a>
+    <a class="ativo" href="/painel">Painel interno</a>
+  </nav>
+</header>
+
+<main class="painel">
+
+  <div class="metricas" id="metricas"></div>
+
+  <section class="secao">
+    <h2>Alertas de <em>prescrição</em></h2>
+    <p style="font-size:.85rem;color:var(--tinta-suave);margin-bottom:.8rem">Competências mais antigas da janela de 60 meses prescrevendo nos próximos 6 meses — cada mês perdido é crédito que deixa de existir.</p>
+    <div class="rolagem"><table class="tabela" id="alertas">
+      <thead><tr><th>Caso</th><th>Cliente final</th><th>Estágio</th><th>Prescreve em</th><th>Meses restantes</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <section class="secao">
+    <h2>Pipeline de <em>execução</em></h2>
+    <div class="kanban" id="kanban"></div>
+  </section>
+
+  <div class="grade-2">
+    <section class="secao">
+      <h2>Abrir novo caso</h2>
+      <form class="ledger" style="padding:1.2rem" id="form-caso">
+        <label for="c-cliente">Cliente final</label>
+        <input id="c-cliente" required placeholder="Razão social">
+        <label for="c-parceiro">Parceiro (escritório)</label>
+        <select id="c-parceiro"></select>
+        <label for="c-tese">Tese</label>
+        <input id="c-tese" value="Exclusão de verbas indenizatórias da base do INSS patronal">
+        <label for="c-valor">Valor estimado (R$)</label>
+        <input id="c-valor" type="number" min="0" step="1000">
+        <label for="c-janela">Primeira competência da janela</label>
+        <input id="c-janela" type="date">
+        <p style="margin-top:1rem"><button class="btn btn-ouro" type="submit">Abrir caso</button></p>
+      </form>
+    </section>
+
+    <section class="secao">
+      <h2>Gerar proposta <em>white label</em></h2>
+      <form class="ledger" style="padding:1.2rem" id="form-proposta">
+        <label for="p-escritorio">Nome do escritório (identidade da proposta)</label>
+        <input id="p-escritorio" required placeholder="Ex.: Almeida & Souza Advogados">
+        <label for="p-cliente">Cliente final</label>
+        <input id="p-cliente" required>
+        <label for="p-total">Crédito total estimado (R$)</label>
+        <input id="p-total" type="number" min="0" step="1000" required>
+        <label for="p-honorario">Honorário de êxito (%)</label>
+        <input id="p-honorario" type="number" min="1" max="50" value="20">
+        <label for="p-prazo">Prazo de execução (semanas)</label>
+        <input id="p-prazo" type="number" min="1" value="8">
+        <p style="margin-top:1rem"><button class="btn btn-tinta" type="submit">Gerar proposta (abre em nova aba)</button></p>
+      </form>
+    </section>
+  </div>
+
+  <section class="secao">
+    <h2>Leads do <em>simulador</em></h2>
+    <div class="rolagem"><table class="tabela" id="leads">
+      <thead><tr><th>ID</th><th>Nome / Empresa</th><th>Tipo</th><th>Contato</th><th>Potencial estimado</th><th>Score</th><th>Status</th><th></th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <section class="secao">
+    <h2>Cadastrar parceiro</h2>
+    <form class="ledger" style="padding:1.2rem;max-width:520px" id="form-parceiro">
+      <label for="pa-nome">Escritório</label>
+      <input id="pa-nome" required>
+      <label for="pa-contato">Contato</label>
+      <input id="pa-contato">
+      <label for="pa-email">E-mail</label>
+      <input id="pa-email" type="email">
+      <label for="pa-cidade">Cidade</label>
+      <input id="pa-cidade">
+      <p style="margin-top:1rem"><button class="btn btn-claro" type="submit">Salvar parceiro</button></p>
+    </form>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <span>Lessa Biazini OS · uso interno · todos os eventos ficam registrados na trilha de auditoria de cada caso</span>
+</footer>
+
+<script src="/painel.js"></script>
+</body>
+</html>

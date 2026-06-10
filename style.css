@@ -1,0 +1,107 @@
+/* ============================================================
+   Lessa Biazini OS — Identidade visual
+   Tokens: tinta (grafite), papel (off-white contábil), ouro (selo),
+   verde-crédito (lançamentos a recuperar). Tipografia: Fraunces
+   (display, com itálico — eco do site institucional) + Archivo (texto).
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,700;0,800;1,600&family=Archivo:wght@400;500;600&display=swap');
+
+:root{
+  --marinho:#00183a;       /* navy do logo */
+  --tinta:#0c1626;
+  --tinta-suave:#42506a;
+  --papel:#f7f9fc;
+  --papel-escuro:#e9eef6;
+  --azul:#004db3;          /* azul royal do logo */
+  --azul-escuro:#003c8c;
+  --azul-claro:#cfe0fa;
+  --verde:#1f6b4a;
+  --vermelho:#9c3a2e;
+  --linha:#d4dce8;
+  --raio:6px;
+  --sombra:0 2px 10px rgba(21,24,29,.08);
+  --serif:'Montserrat',system-ui,sans-serif;
+  --sans:'Archivo',system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--papel);color:var(--tinta);line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.15;letter-spacing:-.01em}
+h1 em,h2 em{font-style:italic;font-weight:600;color:var(--azul)}
+a{color:var(--azul-escuro)}
+button{font-family:var(--sans);cursor:pointer}
+:focus-visible{outline:2px solid var(--azul);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---- Cabeçalho / marca ---- */
+.topo{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem clamp(1rem,4vw,3rem);background:var(--marinho);color:#fff}
+.marca{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:#fff}
+.marca .selo{width:46px;height:46px;flex:none;border-radius:8px;object-fit:cover}
+.marca .nome{font-family:var(--serif);font-size:1.05rem;letter-spacing:.02em}
+.marca .nome small{display:block;font-family:var(--sans);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:#9fb0cc}
+.topo nav{display:flex;gap:.5rem;flex-wrap:wrap}
+.topo nav a{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:#b9c7e0;padding:.45rem .7rem;border-radius:var(--raio)}
+.topo nav a.ativo,.topo nav a:hover{color:#fff;background:rgba(255,255,255,.12)}
+
+/* ---- Botões ---- */
+.btn{display:inline-block;border:none;border-radius:var(--raio);padding:.75rem 1.4rem;font-size:.95rem;font-weight:600;letter-spacing:.02em;text-decoration:none;transition:transform .12s,box-shadow .12s}
+.btn:active{transform:translateY(1px)}
+.btn-ouro{background:var(--azul);color:#fff}
+.btn-ouro:hover{background:var(--azul-escuro)}
+.btn-tinta{background:var(--marinho);color:#fff}
+.btn-claro{background:transparent;border:1px solid var(--linha);color:var(--tinta)}
+.btn-mini{padding:.35rem .7rem;font-size:.75rem}
+
+/* ---- Formulários ---- */
+label{display:block;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--tinta-suave);margin:.9rem 0 .25rem}
+input,select{width:100%;padding:.65rem .75rem;border:1px solid var(--linha);border-radius:var(--raio);background:#fff;font:inherit;color:var(--tinta)}
+input:focus,select:focus{border-color:var(--azul);outline:none}
+.opcoes{display:grid;gap:.4rem;margin-top:.3rem}
+.opcoes label{display:flex;align-items:center;gap:.55rem;margin:0;padding:.55rem .7rem;border:1px solid var(--linha);border-radius:var(--raio);background:#fff;font-size:.85rem;text-transform:none;letter-spacing:0;color:var(--tinta);cursor:pointer}
+.opcoes input{width:auto}
+.opcoes label:has(input:checked){border-color:var(--azul);background:#eef4fd}
+
+/* ---- Ledger (assinatura visual) ---- */
+.ledger{background:#fff;border:1px solid var(--linha);border-radius:var(--raio);box-shadow:var(--sombra)}
+.ledger header{padding:1rem 1.25rem;border-bottom:2px solid var(--marinho);display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+.ledger header h3{font-size:1rem}
+.ledger header span{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-escuro)}
+.ledger table{width:100%;border-collapse:collapse;font-size:.9rem}
+.ledger td,.ledger th{padding:.6rem 1.25rem;border-bottom:1px solid var(--papel-escuro);text-align:left}
+.ledger th{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-suave);font-weight:500}
+.num{text-align:right!important;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ledger .total td{border-top:2px solid var(--marinho);border-bottom:none;font-weight:600;font-size:1.02rem;background:var(--papel)}
+.verde{color:var(--verde)}
+.linha-anim{animation:surge .4s ease both}
+@keyframes surge{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* ---- Selos/etiquetas ---- */
+.tag{display:inline-block;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .55rem;border-radius:999px}
+.tag-a{background:#e4f1ea;color:var(--verde)}
+.tag-b{background:#e3edfb;color:var(--azul-escuro)}
+.tag-c{background:var(--papel-escuro);color:var(--tinta-suave)}
+.tag-alerta{background:#f9e9e6;color:var(--vermelho)}
+
+/* ---- Painel ---- */
+.painel{padding:1.5rem clamp(1rem,4vw,3rem);max-width:1280px;margin:0 auto}
+.metricas{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.8rem;margin:1.2rem 0 2rem}
+.metrica{background:#fff;border:1px solid var(--linha);border-radius:var(--raio);padding:.9rem 1rem}
+.metrica b{display:block;font-family:var(--serif);font-weight:800;font-size:1.55rem;font-variant-numeric:tabular-nums}
+.metrica span{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-suave)}
+.kanban{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,1fr);gap:.8rem;overflow-x:auto;padding-bottom:.5rem}
+.coluna{background:var(--papel-escuro);border-radius:var(--raio);padding:.7rem;min-height:120px}
+.coluna h4{font-family:var(--sans);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-suave);margin-bottom:.6rem;display:flex;justify-content:space-between}
+.cartao{background:#fff;border:1px solid var(--linha);border-left:3px solid var(--azul);border-radius:var(--raio);padding:.65rem .75rem;margin-bottom:.55rem;font-size:.83rem}
+.cartao b{font-family:var(--serif)}
+.cartao .meta{color:var(--tinta-suave);font-size:.72rem;margin:.15rem 0 .45rem}
+secao,.secao{display:block;margin:2.2rem 0}
+.secao>h2{font-size:1.25rem;margin-bottom:.8rem}
+.tabela{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--linha);border-radius:var(--raio);overflow:hidden;font-size:.85rem}
+.tabela th,.tabela td{padding:.6rem .8rem;border-bottom:1px solid var(--papel-escuro);text-align:left}
+.tabela th{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-suave)}
+.rolagem{overflow-x:auto}
+.grade-2{display:grid;gap:1.5rem;grid-template-columns:1fr}
+@media(min-width:900px){.grade-2{grid-template-columns:1fr 1fr}}
+
+/* ---- Rodapé ---- */
+.rodape{border-top:1px solid var(--linha);margin-top:3rem;padding:1.5rem clamp(1rem,4vw,3rem);font-size:.78rem;color:var(--tinta-suave);display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between}

@@ -1,0 +1,14 @@
+{
+  "name": "lessa-biazini-os",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Captação qualificada, pipeline auditável e propostas white label — Lessa Biazini Gestão Empresarial",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "pg": "^8.13.1"
+  }
+}
